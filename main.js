@@ -12,10 +12,10 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { Reflector } from 'three/addons/objects/Reflector.js';
+import { Reflector } from 'three/addons/objects/Reflector.js';//this is a test comment
 
 /* =========================================================
-   1. YOUR PROJECTS  ← this is the part you'll edit most
+   1. YOUR PROJECTS  ← this is the part you'll edit poopoo
    ---------------------------------------------------------
    One { ... } block per project. Add or remove blocks and the
    corridor gets longer or shorter by itself.
