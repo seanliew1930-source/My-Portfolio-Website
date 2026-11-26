@@ -6,154 +6,137 @@
 <title>Sean Liew — Design Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-<!-- ============ LOADING SCREEN ============ -->
+<!-- ============ LOADING ============ -->
 <div id="loader" aria-live="polite">
-  <div class="loader-inner">
-    <div class="loader-label">Preparing the gallery</div>
-    <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
-    <div class="loader-num" id="loader-num">00%</div>
-  </div>
-</div>
-
-<!-- ============ ENTRANCE DOORS ============ -->
-<div id="entrance" aria-label="Enter the gallery">
-  <div class="e-door left">
-    <div class="e-panel"><div class="e-glass"></div></div>
-    <div class="e-handle"></div>
-    <div class="e-name" id="e-first"></div>
-    <div class="e-sub">Design</div>
-  </div>
-  <div class="e-door right">
-    <div class="e-panel"><div class="e-glass"></div></div>
-    <div class="e-handle"></div>
-    <div class="e-name" id="e-last"></div>
-    <div class="e-sub">Psychology</div>
-  </div>
-  <div class="e-seam"></div>
-  <div class="e-hint">Click to enter</div>
+  <div class="loader-name" id="loader-name">Sean Liew</div>
+  <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
+  <div class="loader-num" id="loader-num">Loading 00%</div>
 </div>
 
 <!-- ============ HEADER ============ -->
-<header>
-  <div class="brand">
-    <button class="logo" id="logo" aria-label="Back to the start"></button>
-    <span class="brand-divider" aria-hidden="true"></span>
-    <span id="brand-name">Sean Liew</span>
-    <small>Design × Psychology</small>
-  </div>
-  <div class="toggle pill" role="group" aria-label="View">
-    <button id="btn-gallery" aria-pressed="true">GALLERY</button>
-    <button id="btn-list" aria-pressed="false">LIST</button>
-  </div>
+<header id="header">
+  <button class="logo" id="logo" aria-label="Back to the start of the gallery"></button>
+  <nav class="nav" aria-label="Main">
+    <button data-go="gallery">Gallery</button>
+    <button data-go="list">Index</button>
+    <button data-go="about">About</button>
+    <button data-go="contact">Contact</button>
+  </nav>
+  <div class="header-tag" id="header-tag">Design × Psychology</div>
 </header>
 
-<!-- ============ TOOLS STRIP ============ -->
-<div class="tools" aria-label="Tools I use">
-  <div class="tools-label">Tools I use</div>
-  <div class="tools-window"><div class="tools-track" id="tools-track"></div></div>
+<!-- GALLERY / LIST switch, just under the header -->
+<div class="view-toggle" role="group" aria-label="View">
+  <button id="btn-gallery" aria-pressed="true">Gallery</button>
+  <button id="btn-list" aria-pressed="false">List</button>
 </div>
 
 <!-- ============ 3D GALLERY ============ -->
-<div id="gallery-view">
-<div id="scene" aria-label="Gallery corridor. Scroll to walk."></div>
+<main id="gallery-view">
+  <div id="scene" aria-label="A curved gallery hallway. Scroll or drag to walk; click a work to look closer."></div>
 
-<div class="intro" id="intro">
-  <h1 id="intro-name">Sean Liew</h1>
-  <p class="subtitle">Design &amp; Psychology · University of Auckland</p>
-  <p class="scroll-cue">Scroll to begin the walk ↓</p>
-</div>
-
-<div class="caption pill hidden" id="caption" style="border-radius:18px">
-  <div class="label">Now passing</div>
-  <div class="title" id="caption-title"></div>
-  <button id="caption-open">Look closer →</button>
-</div>
-
-<nav class="rail hidden" id="rail" aria-label="Progress through the gallery">
-  <div class="rail-count"><b id="rail-num">01</b><span id="rail-total">/ 15</span></div>
-  <div class="rail-track"><div class="rail-fill" id="rail-fill"></div><div id="rail-dots" style="display:contents"></div></div>
-</nav>
-
-<div class="controls">
-  <div class="hint pill">Scroll, drag or use W / S to walk · Click a piece to look closer</div>
-  <div class="arrows">
-    <button class="pill" id="prev" aria-label="Previous project">←</button>
-    <button class="pill" id="next" aria-label="Next project">→</button>
+  <div class="caption" id="caption">
+    <div class="cap-label" id="cap-label">You are walking past</div>
+    <div class="cap-title" id="cap-title"></div>
+    <button class="cap-link" id="cap-link">View project →</button>
   </div>
-</div>
-</div><!-- /gallery-view -->
 
-<!-- ============ LIST VIEW ============ -->
-<section id="list" aria-label="Project list">
-  <h2>About</h2>
-  <div id="list-about"></div>
-  <h2 class="list-sub">All projects</h2>
-  <div id="list-rows"></div>
-  <h2 class="list-sub">Get in touch</h2>
-  <div id="list-contact"></div>
-</section>
-<div id="preview"><img alt=""></div>
-<div id="hover-label" aria-hidden="true">LOOK CLOSER</div>
-<div id="cursor-ring" aria-hidden="true"></div>
-<div id="cursor-dot" aria-hidden="true"></div>
-
-<!-- ============ PROJECT POP-UP ============ -->
-<div id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
-  <button class="modal-close pill" id="modal-close">Close ✕</button>
-  <div class="modal-inner">
-    <div class="modal-img"><img id="m-img" alt=""></div>
-    <div class="modal-text">
-      <p class="meta" id="m-meta"></p>
-      <h2 id="m-title"></h2>
-      <p class="summary" id="m-summary"></p>
-      <div id="m-sections"></div>
+  <div class="corner">
+    <div class="arrows">
+      <button id="prev" aria-label="Previous work">←</button>
+      <button id="next" aria-label="Next work">→</button>
+    </div>
+    <div class="hints">
+      <div>Scroll or drag to walk round</div>
+      <div>Click a work to look closer</div>
     </div>
   </div>
-</div>
+</main>
 
-<!-- ============ FULL-SIZE IMAGE VIEWER ============ -->
+<!-- ============ LIST VIEW ============ -->
+<section id="list" aria-label="All work">
+  <div class="list-inner">
+    <div class="list-head">
+      <h2>Selected Work</h2>
+      <span class="list-count" id="list-count"></span>
+    </div>
+    <div id="list-rows"></div>
+  </div>
+</section>
+
+<!-- ============ PROJECT PAGE ============ -->
+<section id="project" class="page" role="dialog" aria-modal="true" aria-labelledby="p-title">
+  <div class="page-inner project-inner">
+    <div class="p-media">
+      <div class="p-stage" id="p-stage"></div>
+      <div class="p-media-bar">
+        <span class="p-count" id="p-count">1/1</span>
+        <div class="p-nav">
+          <button id="p-prev" aria-label="Previous image">←</button>
+          <button id="p-next" aria-label="Next image">→</button>
+        </div>
+        <button class="p-wall" id="p-wall">◎ View on the wall</button>
+      </div>
+    </div>
+    <div class="p-text">
+      <button class="back" id="p-back">← All work</button>
+      <h1 id="p-title"></h1>
+      <h3 id="p-sub"></h3>
+      <p class="p-summary" id="p-summary"></p>
+      <div class="p-more" id="p-more"></div>
+      <button class="read-more" id="p-readmore">Read more +</button>
+      <div class="p-details" id="p-details"></div>
+    </div>
+  </div>
+  <!-- a little nudge that there's more below -->
+  <button class="more-cue" id="more-cue"><span id="more-cue-text">More below</span><i aria-hidden="true">↓</i></button>
+  <!-- the clothesline: scroll down and the images move along a hanging line -->
+  <div class="line-wrap" id="line-wrap" hidden>
+    <div class="line-sticky">
+      <div class="line-head">
+        <div class="line-kicker" id="line-kicker"><i aria-hidden="true">↓</i> Keep scrolling to move along the line</div>
+        <h2 id="line-title"></h2>
+      </div>
+      <svg class="line-rope" id="line-rope" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg>
+      <div class="line-track" id="line-track"></div>
+      <div class="line-cap" id="line-cap"></div>
+      <div class="line-count"><span id="line-num">01</span><i></i><span id="line-total">00</span></div>
+      <div class="line-hint" id="line-hint">Scroll or drag · click one to view it big</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT + CONTACT PAGE ============ -->
+<section id="about" class="page" role="dialog" aria-modal="true" aria-labelledby="a-title">
+  <div class="page-inner about-inner">
+    <div class="a-photo"><img id="a-photo" alt=""></div>
+    <div class="a-text">
+      <button class="back" id="a-back">← Back</button>
+      <h1 id="a-title">About</h1>
+      <h3 id="a-name"></h3>
+      <p class="a-intro" id="a-intro"></p>
+      <div id="a-sections"></div>
+      <div class="a-block" id="a-tools-block"><div class="label">Tools I use</div><div class="chips" id="a-tools"></div></div>
+      <div class="a-block" id="a-words-block"><div class="label">Kind words</div><div id="a-words"></div></div>
+      <div class="a-block" id="contact"><div class="label">Get in touch</div><div id="a-contact"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FULL-SIZE IMAGE ============ -->
 <div id="viewer" role="dialog" aria-label="Full-size image">
-  <button class="v-close pill" id="viewer-close">Close ✕</button>
+  <button class="v-close" id="viewer-close">Close ✕</button>
   <img id="viewer-img" alt="">
-  <div class="v-hint pill" id="viewer-hint">Click or scroll to zoom in</div>
+  <video id="viewer-video" controls playsinline loop></video>
+  <div class="v-hint">Click to zoom · move to look around</div>
 </div>
 
-<!-- ============ VIEWING ROOM ============ -->
-<div id="vroom" role="dialog" aria-label="Viewing room">
-  <div class="vr-scene" id="vr-scene"></div>
-  <div class="vr-bar">
-    <div class="vr-title" id="vr-title"></div>
-    <button class="vr-back pill" id="vr-back">← Back to the gallery</button>
-  </div>
-  <div class="vr-hint pill">Scroll or drag to look around · click an image to view it</div>
-</div>
-
-<!-- ============ BREAK ROOM (Easter egg) ============ -->
-<div id="breakroom" role="dialog" aria-label="Break room">
-  <canvas id="scenery" width="320" height="180"></canvas>
-  <div class="break-card">
-    <div class="bc-label">Staff only · Break area</div>
-    <h2>You found the break room.</h2>
-    <p>Take a breather. The gallery will be right here when you’re ready.</p>
-    <button id="break-back">← Back to the gallery</button>
-  </div>
-</div>
-
-<!-- ============ QUOTE CARD ============ -->
-<aside id="quote-card" role="dialog" aria-label="Testimony">
-  <button class="qc-close" id="qc-close" aria-label="Close">✕</button>
-  <div id="qc-body">
-    <div class="qc-mark" aria-hidden="true">“</div>
-    <p class="qc-quote" id="qc-quote"></p>
-    <p class="qc-from" id="qc-from"></p>
-    <button class="qc-project" id="qc-project"></button>
-  </div>
-</aside>
+<div id="hover-tag" aria-hidden="true"></div>
 
 <script type="module" src="/main.js"></script>
 </body>
